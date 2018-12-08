@@ -45,6 +45,7 @@ void ustawCzestotliwosc(float czestotliwosc) {
   Serial.print(czestotliwosc, 4);
   Serial.println("Hz");
 
+  noInterrupts();
   TCCR1A = ( (1 << COM1A0)); // Timer/Counter1 Control Register A
   TCCR1B = 0; // Timer/Counter1 Control Register B
   TCCR2A |= (1 << COM2A0);
@@ -73,6 +74,7 @@ void ustawCzestotliwosc(float czestotliwosc) {
   }
   TIMSK1 = 0;
   OCR1A = ocr;
+  interrupts();
 }
 
 
