@@ -16,6 +16,10 @@ void ustawCzestotliwosc(float czestotliwosc) {
     Serial.println("Za duza czestotliwosc");
     return;
   }
+  if (czestotliwosc < 0.1) {
+    Serial.println("Za mala czestotliwosc");
+    return;
+  }
 
   i = 0;
   while ( i < 5 ) {
