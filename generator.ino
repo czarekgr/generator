@@ -50,9 +50,8 @@ void ustawCzestotliwosc(float czestotliwosc) {
   Serial.println("Hz");
 
   noInterrupts();
-  TCCR1A = ( (1 << COM1A0)); // Timer/Counter1 Control Register A
-  TCCR1B = 0; // Timer/Counter1 Control Register B
-  TCCR2A |= (1 << COM2A0);
+  TCCR1A = ( (1 << COM1A0));  // Toggle OC1A/OC1B on Compare Match.
+  TCCR1B = 0; // Timer/Counter1 Control Register
 
   switch (i) {
     case 0:
