@@ -59,19 +59,19 @@ void ustawCzestotliwosc(float czestotliwosc) {
       TCCR1B |= (1 << CS10) ;
       break;
     case 1:
-      // prescaler = -----  8
+      // prescaler 8
       TCCR1B |=  (1 << CS11);
       break;
     case 2:
-      //prescaler = -----  64
+      //prescaler 64
       TCCR1B |=   (1 << CS10) | (1 << CS11);
       break;
     case 3:
-      // prescaler = -----  256
+      // prescaler 256
       TCCR1B |=  (1 << CS12);
       break;
     case 4:
-      // prescaler = -----  1024
+      // prescaler 1024
       TCCR1B |= (1 << CS12) | (1 << CS10);
       break;
   }
