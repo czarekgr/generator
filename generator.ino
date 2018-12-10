@@ -52,30 +52,30 @@ void ustawCzestotliwosc(float czestotliwosc) {
   noInterrupts();
   TCCR1A = ( (1 << COM1A0));  // Toggle OC1A/OC1B on Compare Match.
   TCCR1B = 0; // Timer/Counter1 Control Register
-
+  TCCR1B |= (1 << WGM12);
   switch (i) {
     case 0:
       // prescaler 1
-      TCCR1B |= (1 << WGM12) | (1 << CS10) ;
+      TCCR1B |= (1 << CS10) ;
       break;
     case 1:
       // prescaler = -----  8
-      TCCR1B |=  (1 << WGM12) | (1 << CS11);
+      TCCR1B |=  (1 << CS11);
       break;
     case 2:
       //prescaler = -----  64
-      TCCR1B |= (1 << WGM12) | (1 << CS10) | (1 << CS11);
+      TCCR1B |=   (1 << CS10) | (1 << CS11);
       break;
     case 3:
       // prescaler = -----  256
-      TCCR1B |= (1 << WGM12) | (1 << CS12);
+      TCCR1B |=  (1 << CS12);
       break;
     case 4:
       // prescaler = -----  1024
-      TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
+      TCCR1B |= (1 << CS12) | (1 << CS10);
       break;
   }
-  TIMSK1 = 0;
+
   OCR1A = ocr;
   interrupts();
 }
