@@ -1,7 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #define wyjscie 9
-#define kwarc 16000000L
+#define kwarc 16000000UL
 
 String odebraneDane = ""; //Pusty ciąg odebranych danych
 float czestotliwosc;
@@ -43,11 +43,11 @@ void ustawCzestotliwosc(float czestotliwosc) {
   Serial.println("OK");
   Serial.print("Wprowadzono f = ");
   Serial.print(czestotliwosc, 4);
-  Serial.println("Hz");
+  Serial.println(" Hz");
   Serial.print("Na wyjsciu f = ");
   czestotliwosc = kwarc / (prescaler[i] * (1 + ocr) * 2.0);
   Serial.print(czestotliwosc, 4);
-  Serial.println("Hz");
+  Serial.println(" Hz");
 
   noInterrupts();
   TCCR1A = ( (1 << COM1A0));  // Toggle OC1A/OC1B on Compare Match.
@@ -93,7 +93,60 @@ void loop() {
   if (Serial.available() > 0) { //Czy Arduino odebrało dane
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
     odebraneDane = Serial.readStringUntil('\n');
+
     czestotliwosc = odebraneDane.toFloat();
-    ustawCzestotliwosc(czestotliwosc);
+
+    if (odebraneDane.equalsIgnoreCase("A") ) {
+      czestotliwosc =  440.0;
+      Serial.println("A");
+    }
+    if (odebraneDane.equalsIgnoreCase("AIS") ) {
+      czestotliwosc =  466.1637615180899;
+      Serial.println("Ais");
+    }
+    if (odebraneDane.equalsIgnoreCase( "H") ) {
+      czestotliwosc =  493.8833012561241;
+      Serial.println("H");
+    }
+    if (odebraneDane.equalsIgnoreCase( "C") ) {
+      czestotliwosc =  523.2511306011972;
+      Serial.println("C");
+    }
+    if (odebraneDane.equalsIgnoreCase("CIS") ) {
+      czestotliwosc =  554.3652619537442;
+      Serial.println("C");
+    }
+    if (odebraneDane.equalsIgnoreCase("D" )) {
+      czestotliwosc =  587.3295358348151;
+      Serial.println("C");
+    }
+    if (odebraneDane.equalsIgnoreCase("DIS") ) {
+      czestotliwosc =  622.2539674441618;
+      Serial.println("Dis");
+    }
+    if (odebraneDane.equalsIgnoreCase("E" )) {
+      czestotliwosc =  659.2551138257398;
+      Serial.println("E");
+    }
+    if (odebraneDane.equalsIgnoreCase("F" )) {
+      czestotliwosc =  698.4564628660078;
+      Serial.println("F");
+    }
+    if (odebraneDane.equalsIgnoreCase( "FIS") ) {
+      czestotliwosc =  739.9888454232688;
+      Serial.println("Fis");
+    }
+    if (odebraneDane.equalsIgnoreCase("G" )) {
+      czestotliwosc =  783.9908719634985;
+      Serial.println("G");
+    }
+    if (odebraneDane.equalsIgnoreCase("Gis") ) {
+      czestotliwosc =  830.6093951598903;
+      Serial.println("Gis");
+    }
+
+    if (odebraneDane.length() )
+      ustawCzestotliwosc(czestotliwosc);
+    odebraneDane = "";
   }
 }
