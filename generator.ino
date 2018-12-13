@@ -1,7 +1,9 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #define wyjscie 9
-#define kwarc 16000000UL
+// #define kwarc 16000000UL //znamionowa częstotliwość taktowania
+#define kwarc 15992220UL //zmierzona częstotliwość kwarcu
+
 
 String odebraneDane = ""; //Pusty ciąg odebranych danych
 float czestotliwosc;
