@@ -2,7 +2,7 @@
 #include <avr/interrupt.h>
 #define wyjscie 9
 // #define kwarc 16000000UL //znamionowa częstotliwość taktowania
-#define kwarc 15992220UL //zmierzona częstotliwość kwarcu
+#define kwarc 15992220UL //zmierzona częstotliwość kwarcu, k... prawie 8kHz odchyłki!!!
 
 
 String odebraneDane = ""; //Pusty ciąg odebranych danych
@@ -95,6 +95,7 @@ void loop() {
   if (Serial.available() > 0) { //Czy Arduino odebrało dane
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
     odebraneDane = Serial.readStringUntil('\n');
+    odebraneDane.trim();  // na ewentualny CR z Putty
 
     czestotliwosc = odebraneDane.toFloat();
 
