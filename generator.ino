@@ -49,7 +49,7 @@ void ustawCzestotliwosc(float czestotliwosc) {
   Serial.print("Na wyjsciu f = ");
   czestotliwosc = kwarc / (prescaler[i] * (1 + ocr) * 2.0);
   Serial.print(czestotliwosc, 4);
-  Serial.println(" Hz");
+  Serial.println(" Hz\n");
 
   noInterrupts();
   TCCR1A = ( (1 << COM1A0));  // Toggle OC1A/OC1B on Compare Match.
