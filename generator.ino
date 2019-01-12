@@ -15,11 +15,11 @@ void ustawCzestotliwosc(float czestotliwosc) {
   uint16_t prescaler[5] = {1, 8, 64, 256, 1024};
   byte i;
   if (czestotliwosc > kwarc / 2 + 1) {
-    Serial.println("Za duza czestotliwosc");
+    Serial.println(F("Za duza czestotliwosc"));
     return;
   }
   if (czestotliwosc < 0.1) {
-    Serial.println("Za mala czestotliwosc");
+    Serial.println(F("Za mala czestotliwosc"));
     return;
   }
 
@@ -39,17 +39,17 @@ void ustawCzestotliwosc(float czestotliwosc) {
         Serial.print("prescaler = ");
         Serial.println(prescaler[i]); */
   } else {
-    Serial.println("Za mala  czestotliwosc");
+    Serial.println(F("Za mala  czestotliwosc"));
     return;
   }
-  Serial.println("OK");
-  Serial.print("Wprowadzono f = ");
+  Serial.println(F("OK"));
+  Serial.print(F("Wprowadzono f = "));
   Serial.print(czestotliwosc, 4);
-  Serial.println(" Hz");
-  Serial.print("Na wyjsciu f = ");
+  Serial.println(F(" Hz"));
+  Serial.print(F("Na wyjsciu f = "));
   czestotliwosc = kwarc / (prescaler[i] * (1 + ocr) * 2.0);
   Serial.print(czestotliwosc, 4);
-  Serial.println(" Hz\n");
+  Serial.println(F(" Hz\n"));
 
   noInterrupts();
   TCCR1A = ( (1 << COM1A0));  // Toggle OC1A/OC1B on Compare Match.
@@ -101,51 +101,51 @@ void loop() {
 
     if (odebraneDane.equalsIgnoreCase("A") ) {
       czestotliwosc =  440.0;
-      Serial.println("A");
+      Serial.println(F("A"));
     }
     if (odebraneDane.equalsIgnoreCase("AIS") ) {
       czestotliwosc =  466.1637615180899;
-      Serial.println("Ais");
+      Serial.println(F("Ais"));
     }
     if (odebraneDane.equalsIgnoreCase( "H") ) {
       czestotliwosc =  493.8833012561241;
-      Serial.println("H");
+      Serial.println(F("H"));
     }
     if (odebraneDane.equalsIgnoreCase( "C") ) {
       czestotliwosc =  523.2511306011972;
-      Serial.println("C");
+      Serial.println(F("C"));
     }
     if (odebraneDane.equalsIgnoreCase("CIS") ) {
       czestotliwosc =  554.3652619537442;
-      Serial.println("C");
+      Serial.println(F("Cis"));
     }
     if (odebraneDane.equalsIgnoreCase("D" )) {
       czestotliwosc =  587.3295358348151;
-      Serial.println("C");
+      Serial.println(F("D"));
     }
     if (odebraneDane.equalsIgnoreCase("DIS") ) {
       czestotliwosc =  622.2539674441618;
-      Serial.println("Dis");
+      Serial.println(F("Dis"));
     }
     if (odebraneDane.equalsIgnoreCase("E" )) {
       czestotliwosc =  659.2551138257398;
-      Serial.println("E");
+      Serial.println(F("E"));
     }
     if (odebraneDane.equalsIgnoreCase("F" )) {
       czestotliwosc =  698.4564628660078;
-      Serial.println("F");
+      Serial.println(F("F"));
     }
     if (odebraneDane.equalsIgnoreCase( "FIS") ) {
       czestotliwosc =  739.9888454232688;
-      Serial.println("Fis");
+      Serial.println(F("Fis"));
     }
     if (odebraneDane.equalsIgnoreCase("G" )) {
       czestotliwosc =  783.9908719634985;
-      Serial.println("G");
+      Serial.println(F("G"));
     }
     if (odebraneDane.equalsIgnoreCase("Gis") ) {
       czestotliwosc =  830.6093951598903;
-      Serial.println("Gis");
+      Serial.println(F("Gis"));
     }
 
     if (odebraneDane.length() )
